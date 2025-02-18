@@ -1,0 +1,15 @@
+---
+- name: Konfigurasi MikroTik DNS Redirect ke DNS Sehat
+  hosts: mikrotik
+  gather_facts: no
+  tasks:
+    - name: Set DNS Server ke DNS Sehat
+      community.routeros.command:
+        commands:
+          - /ip dns set servers=103.247.36.36,103.247.37.37 allow-remote-requests=yes
+
+    - name: Tambahkan NAT Rule untuk Redirect DNS
+      community.routeros.command:
+        commands:
+          - /ip firewall nat add chain=dstnat protocol=udp dst-port=53 action=redirect to-ports=53
+          - /ip firewall nat add chain=dstnat protocol=tcp dst-port=53 action=redirect to-ports=53

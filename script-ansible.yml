@@ -11,5 +11,5 @@
     - name: Tambahkan NAT Rule untuk Redirect DNS
       community.routeros.command:
         commands:
-          - /ip firewall nat add chain=dstnat protocol=udp dst-port=53 action=redirect to-address=103.58.161.3 to-ports=53 comment="Force DNS"
-          - /ip firewall nat add chain=dstnat protocol=tcp dst-port=53 action=redirect to-address=103.58.161.3 to-ports=53 comment="Force DNS"
+          - /ip firewall nat add chain=dstnat protocol=udp dst-port=53 action=redirect to-address=103.58.161.3 to-ports=53 comment="Force DNS" disbled=yes
+          - /ip firewall nat add chain=dstnat protocol=tcp dst-port=53 action=redirect to-address=103.58.161.3 to-ports=53 comment="Force DNS" disbled=yes
